@@ -1,55 +1,37 @@
 import React from "react"
-import { useRouter } from "next/router"
 
-const StepTwo = ({ emailInput, onEmailInputChange, phoneInput, onPhoneInputChange, onStepChange}) => {
-
-    const router = useRouter()
-
-    return (
+const StepTwo = (props) => {
+  const { data, handleChange, next, back, handleSubmit } = props
+  console.log(data)
+  return (
     <>
-    <h1>Welcome!</h1>
-    <p>Please enter the information below and follow the steps in order to book your ticket.</p>
-    <form onSubmit={onStepChange}>
+    <h2>Contact details</h2>
+    <form onSubmit={handleSubmit}>
       <div className="container">
-        <label htmlFor="emailInput">Email</label>
-          <input 
-            type="email"
-            data-testid="email"
-            name="email"
-            value={emailInput} 
-            onChange={onEmailInputChange}
-            required
-            autoComplete="off"
-          />
-      </div>  
-      <div className="container">
-        <label htmlFor="phoneInput">Telephone</label>
-          <input
-            type="tel"
-            data-testid="phone"
-            name="phone"
-            value={phoneInput} 
-            onChange={onPhoneInputChange}
-            required
-            autoComplete="off"
-          />
+        <label htmlFor="email">Email</label>
+        <input 
+          type="email"
+          name="email"
+          defaultValue={data.email}
+          onChange={handleChange}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
       </div>
       <div className="container">
-        <button 
-        type="button" 
-        data-testid="back"
-        onClick={() => router.back('')}
-        >BACK
-        </button>
-        <button type="submit" data-testid="submit">NEXT</button>
+        <label htmlFor="phone">Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          defaultValue={data.phone}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="container">
+        <button type="button" onClick={back}>BACK</button>
+        <button type="button" onClick={next}>NEXT</button>
       </div>
     </form>
     </>
   )
 }
 
-export default StepTwo
-
-// Email should be required AND have the right format. 
-// Phone should be required.
-// Vilken typ ska back-button vara? Submit, reset eller button? 
+export default StepTwo 

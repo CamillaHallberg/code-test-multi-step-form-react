@@ -1,20 +1,23 @@
 import React from "react"
 
-const Results = ({ firstNameInput, lastNameInput, ageInput, emailInput, phoneInput, seatInput, foodInput, allergiesInput }) => {
+const Results = (props) => {
+  const { data } = props
+  console.log(data)
   return (
     <>
-    <h1>Dear {firstNameInput}, your order details below</h1>
+    <h2>Dear {data.firstName}, thank you for completing this form! 👏🏽</h2>
+    <p>Here is a summary of your order</p>
     <div className="orderDetailsContainer">
-      <ul className="orderDetails">
-        <li>First name: <span>{firstNameInput}</span></li>
-        <li>Last name: <span>{lastNameInput}</span></li>
-        <li>Age: <span>{ageInput}</span></li>
-        <li>Email: <span>{emailInput}</span></li>
-        <li>Phone: <span>{phoneInput}</span></li>
-        <li>Seat: <span>{seatInput}</span></li>
-        <li>Food: <span>{foodInput}</span></li>
-        <li>Allergies: <span>{allergiesInput}</span></li>
-      </ul>
+    <ul className="orderDetails">
+        <li>First name: <span>{data.firstName}</span></li>
+        <li>Last name: <span>{data.lastName}</span></li>
+        <li>Age: <span>{data.age}</span></li>
+        <li>E-mail: <span>{data.email}</span></li>
+        <li>Phone: <span>{data.phone}</span></li>
+        <li>Seat number: <span>{data.seat}</span></li>
+        <li>Food preference: <span>{data.food}</span></li>
+        <li>Allergies: <span>{data.allergies}</span></li>
+    </ul>
     </div>
     </>
   )
